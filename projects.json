@@ -1,0 +1,146 @@
+[
+  {
+    "slug": "fin-delta",
+    "name": "FinDelta",
+    "mark": "FD",
+    "area": "llm",
+    "tags": [
+      "Financial reasoning",
+      "LLM post-training"
+    ],
+    "intro": "Financial numerical reasoning with audited labels and evidence-bound arithmetic.",
+    "question": "How do training duration, arithmetic execution, and label quality affect numerical reasoning over financial reports?",
+    "work": "Built a FinQA data pipeline, LoRA SFT and DPO experiments, an arithmetic executor that checks operands against evidence, and matched label-repair comparisons across three seeds.",
+    "data": "Custom company-separated FinQA cohort; 1,000 original training questions and 200 development questions. The reviewed training cohort retains 966 questions. Experiments use Qwen3-0.6B.",
+    "finding": "Longer SFT improved development accuracy with the same executor. Small-scale DPO did not confirm a gain, and the three-seed label-repair difference remained small.",
+    "limit": "Results use a custom development cohort, not official FinQA leaderboard scores. The final test set has not been evaluated, and executor gains must be distinguished from training gains.",
+    "cover": "fin-delta",
+    "links": [
+      [
+        "Research protocol",
+        "docs/RESEARCH_PROTOCOL.md"
+      ],
+      [
+        "Three-seed report",
+        "reports/week1-label-multiseed-v1/REPORT.zh.md"
+      ]
+    ],
+    "repo": "https://github.com/lz3256/fin-delta"
+  },
+  {
+    "slug": "taq-event-lab",
+    "name": "TAQ Event Lab",
+    "mark": "TAQ",
+    "area": "microstructure",
+    "tags": [
+      "Market microstructure",
+      "Transformers"
+    ],
+    "intro": "Controlled comparisons of trade-event tokenization under exposure and compute budgets.",
+    "question": "How do joint event tokens and sequential field tokens behave when the comparison budget changes?",
+    "work": "Implemented small Transformer baselines, cleaning audits, train-only quantization, repeated-seed comparisons, downstream direction tasks, and frozen-representation probes.",
+    "data": "TAQ trades for AAPL, MSFT, AMZN, and NVDA over ten trading days in February 2025. NVDA supplies the unseen-stock comparison; raw and prepared market records are excluded from the repository.",
+    "finding": "Experiments show that model rankings depend on the exposure or training-time budget. Repeated seeds and downstream probes extend the likelihood comparison.",
+    "limit": "The sample has few dates, and some test results were inspected during development. Token likelihood and representation probes do not establish trading profitability.",
+    "cover": "taq-event-lab",
+    "links": [
+      [
+        "Data import notes",
+        "DATA_IMPORT.md"
+      ],
+      [
+        "Compute comparison",
+        "EFFICIENCY_RESULTS.md"
+      ],
+      [
+        "Representation probes",
+        "CLOCK_PROBE_RESULTS.md"
+      ]
+    ],
+    "repo": "https://github.com/lz3256/taq-event-lab"
+  },
+  {
+    "slug": "iv-surface-lab",
+    "name": "IV Surface Lab",
+    "mark": "IV",
+    "area": "volatility",
+    "tags": [
+      "Options",
+      "Volatility forecasting"
+    ],
+    "intro": "Surface construction, time audits, and rolling return and variance forecasts.",
+    "question": "Do implied-volatility features add information beyond price-history and HAR benchmarks?",
+    "work": "Built a shared surface, price, and calendar pipeline; interpolation and node-quality checks; dividend-aware labels; rolling forecasts; and exploratory residualized-skew extensions.",
+    "data": "optionsDX SPX daily option chains for 2010\u20132023 and CRSP SPY data. Vendor raw records and processed market inputs are excluded; a separate synthetic demo is available.",
+    "finding": "The initial specified one-day return comparison improved holdout MSE by 0.087% with p=0.590. IV levels supplied variance-forecasting information in the recorded sample.",
+    "limit": "Return evidence is weak. Stronger variance significance depends on the multiple-comparison family. Later extensions reuse the original sample and former holdout, so their findings are exploratory.",
+    "cover": "iv-surface-lab",
+    "links": [
+      [
+        "Initial empirical results",
+        "research/v1/\u7814\u7a76\u7ed3\u679c.md"
+      ],
+      [
+        "Data audit",
+        "research/v1/\u6570\u636e\u6838\u9a8c.md"
+      ],
+      [
+        "Exploratory protocol",
+        "research/v3/PROTOCOL.md"
+      ]
+    ],
+    "repo": "https://github.com/lz3256/iv-surface-lab"
+  },
+  {
+    "slug": "eth-modularity-volatility",
+    "name": "Ethereum Modularity",
+    "mark": "ETH",
+    "area": "volatility",
+    "tags": [
+      "Transaction networks",
+      "Event studies"
+    ],
+    "intro": "Exploratory links between on-chain community structure and equity volatility events.",
+    "question": "Is Ethereum transaction-network modularity associated with unusually large SPY returns?",
+    "work": "Implemented hourly weighted graphs, Louvain modularity, UTC panel assembly, event studies, regressions with HAC standard errors, and alternative thresholds and graph weights.",
+    "data": "Google BigQuery Ethereum transactions, with SPY observations through Yahoo Finance adapters. The configured main sample is 2024, with a separate COVID case study.",
+    "finding": "The original project reports falling modularity around equity volatility events, opposite to its initial hypothesis. The archived lag-one ROC figure displays AUC=0.618.",
+    "limit": "The current code evaluates ROC on the fitted sample. That AUC is an in-sample fit statistic. Source panels and numerical tables are absent, and network association does not identify a causal mechanism.",
+    "cover": null,
+    "links": [
+      [
+        "Method and interpretation",
+        "docs/METHOD.md"
+      ],
+      [
+        "Recorded ROC figure",
+        "output/figures/roc_curves.png"
+      ]
+    ],
+    "repo": "https://github.com/lz3256/eth-modularity-volatility"
+  },
+  {
+    "slug": "aapl_lstm_trading",
+    "name": "AAPL LSTM Prototype",
+    "mark": "AAPL",
+    "area": "microstructure",
+    "tags": [
+      "Sequence classification",
+      "Paper integration"
+    ],
+    "intro": "An early prototype connecting a return-sequence classifier with a broker adapter.",
+    "question": "How can a classifier over recent open-price returns connect to a paper-trading workflow?",
+    "work": "Implemented stacked LSTMs, chronological data splitting, model persistence, connection checks, and an Alpaca paper-trading adapter.",
+    "data": "1,589 AAPL 30-minute bars from January 23 through July 21, 2025, with OHLC, volume, trade count, and VWAP. Training inputs use ten open-price returns.",
+    "finding": "The repository demonstrates the components of the workflow. Its existing backtest is a prototype diagnostic rather than validated strategy performance.",
+    "limit": "Target/P&L timing, separately adapted label thresholds, and inconsistent backtest windows require correction. Costs and complete position accounting are not included.",
+    "cover": null,
+    "links": [
+      [
+        "Method and evaluation notes",
+        "docs/METHOD.md"
+      ]
+    ],
+    "repo": "https://github.com/lz3256/aapl_lstm_trading"
+  }
+]
