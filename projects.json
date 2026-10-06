@@ -142,5 +142,89 @@
       ]
     ],
     "repo": "https://github.com/lz3256/aapl_lstm_trading"
+  },
+  {
+    "slug": "alpha-decay-lab",
+    "name": "Alpha Decay Lab",
+    "mark": "AD",
+    "area": "microstructure",
+    "tags": [
+      "Signal reconstruction",
+      "Mechanism experiments"
+    ],
+    "intro": "How overlapping signals, decay assumptions, and trading costs affect signal reconstruction.",
+    "question": "When does a misspecified decay shape distort signal reconstruction, and can validation-selected shrinkage improve the resulting decisions?",
+    "work": "Implemented synthetic signal experiments, Wiener and Kalman reconstruction, estimated and oracle comparisons, cost ablations, and parallel runs with auditable checkpoints.",
+    "data": "Synthetic data support controlled comparisons of decay shape, signal overlap, and noise. A separate quote-data adapter supports engineering checks; its data and outputs are not included here.",
+    "finding": "A small-scale experiment suite has been completed. The larger research configurations define further comparisons rather than completed empirical findings.",
+    "limit": "Synthetic experiments test mechanisms under specified assumptions. They do not demonstrate live trading performance, and the quote-data pipeline is separate from the mechanism estimator.",
+    "cover": null,
+    "links": [],
+    "repo": null,
+    "data_heading": "Experiment design",
+    "finding_heading": "Implementation status"
+  },
+  {
+    "slug": "policy-path-equity",
+    "name": "Policy Path and Equity Returns",
+    "mark": "PP",
+    "area": "macro",
+    "tags": [
+      "Macro signals",
+      "Research prototype"
+    ],
+    "intro": "A research prototype linking policy-path repricing to equity sensitivity and portfolio construction.",
+    "question": "How can changes in a market-implied policy path be translated into equity forecasts and risk-controlled portfolio targets?",
+    "work": "Implemented fixed-delivery-month signals, historical equity sensitivity estimates, recursive forecasts, multi-horizon comparisons, and portfolio accounting with turnover and cost scenarios.",
+    "data": "The prototype separates information available at the decision time from subsequent holding-period returns. Synthetic examples exercise calendar alignment, missing data, and portfolio accounting.",
+    "finding": "The research design, implementation, and synthetic demonstration are complete. Real-market empirical validation remains a separate next step.",
+    "limit": "Demonstration returns are generated under synthetic assumptions. Portfolio constraints and execution conventions are research assumptions rather than validated trading conditions.",
+    "cover": null,
+    "links": [],
+    "repo": null,
+    "data_heading": "Research design",
+    "finding_heading": "Implementation status"
+  },
+  {
+    "slug": "macro-fx-feedback",
+    "name": "Macro Surprise Decay and FX Feedback",
+    "mark": "FX",
+    "area": "macro",
+    "tags": [
+      "Macro information",
+      "Method overview"
+    ],
+    "intro": "A framework for studying the persistence of macro surprises and feedback between FX and financing conditions.",
+    "question": "Does the predictive relationship between macro surprises and FX returns decay, and how does it vary with economic conditions?",
+    "work": "Developed a framework with comparable holding windows, lagged state controls, synchronized block resampling, expanding-window prediction, and time-alignment audits.",
+    "data": "The design distinguishes information dates from economic reference periods, uses common event samples across delay comparisons, and separates descriptive relationships from out-of-sample prediction.",
+    "finding": "This overview presents the research questions and implemented methods. It does not publish source datasets, empirical charts, coefficients, or performance metrics.",
+    "limit": "Predictive feedback does not establish a causal loop. Interpretation depends on data vintages, observation timing, sample coverage, and the family of comparisons.",
+    "cover": null,
+    "links": [],
+    "repo": null,
+    "data_heading": "Research design",
+    "finding_heading": "Scope of this overview"
+  },
+  {
+    "slug": "sovereign-risk-pricing",
+    "name": "Sovereign Risk Pricing",
+    "mark": "SR",
+    "area": "macro",
+    "tags": [
+      "Risk repricing",
+      "Method overview"
+    ],
+    "intro": "A framework for comparing sovereign market pricing with macroeconomic risk measures.",
+    "question": "Do differences between market pricing and fundamental risk measures add predictive information beyond existing market signals?",
+    "work": "Implemented relative cross-country comparisons, expanding-window ridge models, training-only transformations, unfinished-label exclusion, common-sample benchmarks, and sensitivity checks.",
+    "data": "The framework evaluates CDS and bond outcomes separately, compares models on matched samples, and distinguishes historical time ordering from independently verified point-in-time data.",
+    "finding": "This overview describes the research design and evaluation framework. Source data, empirical estimates, screening outputs, and performance metrics are not published here.",
+    "limit": "A pricing gap is a research hypothesis rather than an established trading signal. Historical versions, model construction, and bond duration exposure affect its interpretation.",
+    "cover": null,
+    "links": [],
+    "repo": null,
+    "data_heading": "Research design",
+    "finding_heading": "Scope of this overview"
   }
 ]
