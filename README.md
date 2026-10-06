@@ -1,6 +1,6 @@
 # Linfeng Zhao Research Portfolio
 
-Personal research website for financial machine learning, published at https://lz3256.github.io/.
+Personal research website at the intersection of quantitative finance and large language models, published at https://lz3256.github.io/.
 
 The site includes an introduction, five research overviews, links to earlier projects, topic filters, a light/dark theme, and responsive layouts. Project descriptions distinguish recorded findings from prototype or exploratory evidence.
 
