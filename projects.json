@@ -156,13 +156,13 @@
     "question": "When does a misspecified decay shape distort signal reconstruction, and can validation-selected shrinkage improve the resulting decisions?",
     "work": "Implemented synthetic signal experiments, Wiener and Kalman reconstruction, estimated and oracle comparisons, cost ablations, and parallel runs with auditable checkpoints.",
     "data": "Synthetic data support controlled comparisons of decay shape, signal overlap, and noise. A separate quote-data adapter supports engineering checks; its data and outputs are not included here.",
-    "finding": "A small-scale experiment suite has been completed. The larger research configurations define further comparisons rather than completed empirical findings.",
+    "finding": "The recorded small-scale synthetic suite completed 252 scenarios and checked numerical accounting and checkpoint preservation. Larger research configurations remain further work.",
     "limit": "Synthetic experiments test mechanisms under specified assumptions. They do not demonstrate live trading performance, and the quote-data pipeline is separate from the mechanism estimator.",
     "cover": null,
     "links": [],
-    "repo": null,
+    "repo": "https://github.com/lz3256/alpha-decay-lab",
     "data_heading": "Experiment design",
-    "finding_heading": "Implementation status"
+    "finding_heading": "Recorded findings"
   },
   {
     "slug": "policy-path-equity",
@@ -177,11 +177,11 @@
     "question": "How can changes in a market-implied policy path be translated into equity forecasts and risk-controlled portfolio targets?",
     "work": "Implemented fixed-delivery-month signals, historical equity sensitivity estimates, recursive forecasts, multi-horizon comparisons, and portfolio accounting with turnover and cost scenarios.",
     "data": "The prototype separates information available at the decision time from subsequent holding-period returns. Synthetic examples exercise calendar alignment, missing data, and portfolio accounting.",
-    "finding": "The research design, implementation, and synthetic demonstration are complete. Real-market empirical validation remains a separate next step.",
+    "finding": "Synthetic demonstrations and execution comparisons ran end to end. Real-market empirical validation remains unfinished.",
     "limit": "Demonstration returns are generated under synthetic assumptions. Portfolio constraints and execution conventions are research assumptions rather than validated trading conditions.",
     "cover": null,
     "links": [],
-    "repo": null,
+    "repo": "https://github.com/lz3256/policy-path-equity",
     "data_heading": "Research design",
     "finding_heading": "Implementation status"
   },
@@ -197,14 +197,14 @@
     "intro": "A framework for studying the persistence of macro surprises and feedback between FX and financing conditions.",
     "question": "Does the predictive relationship between macro surprises and FX returns decay, and how does it vary with economic conditions?",
     "work": "Developed a framework with comparable holding windows, lagged state controls, synchronized block resampling, expanding-window prediction, and time-alignment audits.",
-    "data": "The design distinguishes information dates from economic reference periods, uses common event samples across delay comparisons, and separates descriptive relationships from out-of-sample prediction.",
-    "finding": "This overview presents the research questions and implemented methods. It does not publish source datasets, empirical charts, coefficients, or performance metrics.",
-    "limit": "Predictive feedback does not establish a causal loop. Interpretation depends on data vintages, observation timing, sample coverage, and the family of comparisons.",
+    "data": "The empirical implementation uses JPMaQS via DataQuery; FX research additionally uses supplemental public macro and exchange-rate sources. The public repository contains code, interfaces, and a synthetic demonstration. Source observations, processed panels, and detailed empirical outputs are excluded.",
+    "finding": "The recorded exploratory longer-history study did not reliably identify a half-life. Main financing-feedback models did not establish a robust loop under simultaneous intervals.",
+    "limit": "Predictive feedback does not establish a causal loop. Interpretation depends on data vintages, observation timing, sample coverage, and the family of comparisons. The README summarizes recorded exploratory findings; withheld empirical inputs and outputs are not included for independent reproduction.",
     "cover": null,
     "links": [],
-    "repo": null,
-    "data_heading": "Research design",
-    "finding_heading": "Scope of this overview"
+    "repo": "https://github.com/lz3256/macro-fx-feedback",
+    "data_heading": "Data and research design",
+    "finding_heading": "Recorded findings"
   },
   {
     "slug": "sovereign-risk-pricing",
@@ -218,13 +218,13 @@
     "intro": "A framework for comparing sovereign market pricing with macroeconomic risk measures.",
     "question": "Do differences between market pricing and fundamental risk measures add predictive information beyond existing market signals?",
     "work": "Implemented relative cross-country comparisons, expanding-window ridge models, training-only transformations, unfinished-label exclusion, common-sample benchmarks, and sensitivity checks.",
-    "data": "The framework evaluates CDS and bond outcomes separately, compares models on matched samples, and distinguishes historical time ordering from independently verified point-in-time data.",
-    "finding": "This overview describes the research design and evaluation framework. Source data, empirical estimates, screening outputs, and performance metrics are not published here.",
-    "limit": "A pricing gap is a research hypothesis rather than an established trading signal. Historical versions, model construction, and bond duration exposure affect its interpretation.",
+    "data": "The empirical implementation uses JPMaQS via DataQuery; CDS and dollar-bond outcomes are evaluated separately. The public repository contains code, interfaces, and a synthetic demonstration. Source observations, processed panels, and detailed empirical outputs are excluded.",
+    "finding": "The recorded primary comparison did not establish stable forecast improvement beyond market baselines. Primary simultaneous intervals included zero.",
+    "limit": "A pricing gap is a research hypothesis rather than an established trading signal. Historical versions, model construction, and bond duration exposure affect its interpretation. The README summarizes recorded exploratory findings; withheld empirical inputs and outputs are not included for independent reproduction.",
     "cover": null,
     "links": [],
-    "repo": null,
-    "data_heading": "Research design",
-    "finding_heading": "Scope of this overview"
+    "repo": "https://github.com/lz3256/sovereign-risk-pricing",
+    "data_heading": "Data and research design",
+    "finding_heading": "Recorded findings"
   }
 ]
