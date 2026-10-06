@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Testing management narrative against reported metrics with LLMs | Linfeng Zhao</title><meta name="description" content="An LLM research project testing whether company disclosures carry information about future fundamentals beyond what reported metrics show."><meta name="theme-color" content="#32649e"><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script defer src="../assets/site.js"></script><style>
+.experience-meta{color:var(--muted);font-size:14px;margin:0 0 8px}
+.method-list{padding-left:22px;margin:23px 0}.method-list li{margin:19px 0}
+.disclaimer{margin:25px 0 30px}.method-body{margin-top:28px}
+@media(max-width:700px){.experience-meta{font-size:13px}}
+</style></head><body><a class="skip" href="#main">Skip to content</a><header class="topbar"><div class="top-inner"><a class="wordmark" href="../index.html">Linfeng Zhao <span>Research &amp; Projects</span></a><nav class="nav" aria-label="Main navigation"><a href="../index.html#about">About</a><a href="../index.html#research">Research</a><a href="../index.html#projects">Projects</a><button class="theme" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme">Dark</button></nav></div></header>
+<main id="main" class="detail">
+<div class="breadcrumb"><a href="../index.html#experience">← Applied research experience</a></div>
+<h1>Testing management narrative against reported metrics with LLMs</h1>
+<p class="experience-meta">Quantitative Research Consultant at a global asset manager</p>
+<p class="experience-meta">2026 to present</p>
+<div class="tags"><span>LLM</span><span>equity research</span><span>quantitative finance</span><span>model validation</span><span>Python</span></div>
+<section class="detail-limit disclaimer" aria-label="Disclosure"><p>Results and implementation details are proprietary and are not shown. This page describes methodology only. It is not investment advice, and the views are my own.</p></section>
+<section class="method-body"><p>Reported metrics describe the quarter that has just ended. This project tests whether a company&#x27;s own disclosures say something about where those numbers are heading that the metrics do not already contain.</p>
+<ul class="method-list"><li><strong>Signal construction.</strong> A two-stage design. Stage one is a deterministic scorecard that ranks companies on reported metrics alone. Stage two is an LLM layer that reads the disclosures and can only adjust that ranking within fixed bounds, so every result is measured against a purely numerical baseline.</li><li><strong>LLM feature engineering.</strong> Evidence extraction is separated from judgment, and disclosures are compared across quarters to detect what has changed. Every judgment must rest on a verbatim quote from the source; anything that fails the check is discarded.</li><li><strong>Validation.</strong> Point-in-time alignment of text and data, placebo and permutation tests against the baseline, and pre-registered rebalances so that each period is a genuine out-of-sample observation.</li></ul>
+<p>Built in Python as one component of a wider team effort on LLM-based research tools.</p></section>
+</main>
+</body></html>
