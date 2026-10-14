@@ -28,68 +28,100 @@
     "repo": "https://github.com/lz3256/fin-delta"
   },
   {
-    "slug": "taq-event-lab",
-    "name": "TAQ Event Lab",
-    "mark": "TAQ",
-    "area": "microstructure",
-    "tags": [
-      "Market microstructure",
-      "Transformers"
-    ],
-    "intro": "Controlled comparisons of trade-event tokenization under exposure and compute budgets.",
-    "question": "How do joint event tokens and sequential field tokens behave when the comparison budget changes?",
-    "work": "Implemented small Transformer baselines, cleaning audits, train-only quantization, repeated-seed comparisons, downstream direction tasks, and frozen-representation probes.",
-    "data": "TAQ trades for AAPL, MSFT, AMZN, and NVDA over ten trading days in February 2025. NVDA supplies the unseen-stock comparison; raw and prepared market records are excluded from the repository.",
-    "finding": "Experiments show that model rankings depend on the exposure or training-time budget. Repeated seeds and downstream probes extend the likelihood comparison.",
-    "limit": "The sample has few dates, and some test results were inspected during development. Token likelihood and representation probes do not establish trading profitability.",
-    "cover": "taq-event-lab",
-    "links": [
-      [
-        "Data import notes",
-        "DATA_IMPORT.md"
-      ],
-      [
-        "Compute comparison",
-        "EFFICIENCY_RESULTS.md"
-      ],
-      [
-        "Representation probes",
-        "CLOCK_PROBE_RESULTS.md"
-      ]
-    ],
-    "repo": "https://github.com/lz3256/taq-event-lab"
-  },
-  {
     "slug": "iv-surface-lab",
-    "name": "IV Surface Lab",
+    "name": "Implied Volatility Information in Variance Forecasting",
     "mark": "IV",
     "area": "volatility",
     "tags": [
       "Options",
       "Volatility forecasting"
     ],
-    "intro": "Surface construction, time audits, and rolling return and variance forecasts.",
-    "question": "Do implied-volatility features add information beyond price-history and HAR benchmarks?",
-    "work": "Built a shared surface, price, and calendar pipeline; interpolation and node-quality checks; dividend-aware labels; rolling forecasts; and exploratory residualized-skew extensions.",
-    "data": "optionsDX SPX daily option chains for 2010\u20132023 and CRSP SPY data. Vendor raw records and processed market inputs are excluded; a separate synthetic demo is available.",
-    "finding": "The initial specified one-day return comparison improved holdout MSE by 0.087% with p=0.590. IV levels supplied variance-forecasting information in the recorded sample.",
-    "limit": "Return evidence is weak. Stronger variance significance depends on the multiple-comparison family. Later extensions reuse the original sample and former holdout, so their findings are exploratory.",
+    "intro": "Implied-variance information, forecast calibration, and robustness across horizons.",
+    "question": "Does 30-day SPX implied variance add information beyond log-HAR, and does lower forecast loss imply correct calibration?",
+    "work": "Compared HAR and HAR+IV with chronological label-maturity controls; evaluated log-MSE, QLIKE and calibration; tested recursive corrections, stale IV inputs and expiry-node sensitivity.",
+    "data": "15.6M SPX option records over 2010–2023 and SPY Garman–Klass variance proxies augmented with squared overnight returns. Original 2023 historical holdout; later calibration uses already viewed history.",
+    "finding": "Adding IV reduced historical-holdout log-variance MSE by 24.3% / 35.6% at 5 / 21 sessions. Exploratory recursive calibration narrowed five-session mean bias from −10.2% to +0.8%, but worsened 21-session calibration. A one-session delay retained a 23.2% 21-session QLIKE advantage over HAR.",
+    "limit": "Later correction results are exploratory; mean-bias improvement is not full calibration or a confirmed loss winner. Staleness sensitivity does not prove historical vendor delivery. The target is a variance proxy; VRP is not identified as the cause of bias. New-period confirmation remains outstanding.",
     "cover": "iv-surface-lab",
     "links": [
       [
-        "Initial empirical results",
-        "research/v1/\u7814\u7a76\u7ed3\u679c.md"
+        "October 2026 research update",
+        "research/2026-10-13/README.md"
       ],
       [
-        "Data audit",
-        "research/v1/\u6570\u636e\u6838\u9a8c.md"
+        "Aggregate comparisons",
+        "research/2026-10-13/results/primary_comparisons.csv"
       ],
       [
-        "Exploratory protocol",
-        "research/v3/PROTOCOL.md"
+        "Initial data audit",
+        "research/v1/数据核验.md"
       ]
     ],
     "repo": "https://github.com/lz3256/iv-surface-lab"
+  },
+  {
+    "slug": "retail-order-flow-lab",
+    "name": "Retail Order Flow: Measurement Error in Trade Signing",
+    "mark": "OIB",
+    "area": "microstructure",
+    "tags": [
+      "Measurement error",
+      "Predictive validation"
+    ],
+    "intro": "Signing-rule sensitivity and disagreement-based adjustments in retail order-flow signals.",
+    "question": "How much does signing-rule choice change a retail-flow signal, and do disagreement-based adjustments improve return prediction?",
+    "work": "Compared six matched-sample signal variants in a point-in-time monthly 1,000-stock universe; used 24 Holm-adjusted predictive comparisons, 20 random-deletion controls, and independent-sign-flip sensitivity simulations.",
+    "data": "258 eligible non-overlapping weekly formation windows over 2020–2025. Inputs use WRDS CRSP and TAQ. Historical period labels are inherited: all periods had already been inspected before the extension.",
+    "finding": "BJZZ and quote-midpoint signals had mean cross-sectional rank correlations of 0.50–0.53 across periods; disagreement reweighting barely changed quote-midpoint rankings (ρ = 0.9985–0.9992). The tested adjustments did not reliably improve rank IC or ridge forecast MSE; targeted exclusions did not consistently outperform random deletion.",
+    "limit": "Disagreement is not a true signing-error rate. Matched stock samples do not make the two signed-trade sets identical. Baseline rank IC was not significant in the current matched periods. The study does not establish causal measurement-error effects, trading profitability, or a fresh holdout.",
+    "cover": null,
+    "repo": "https://github.com/lz3256/retail-order-flow-lab",
+    "links": [
+      [
+        "Research report",
+        "research/2026-10-13/README.md"
+      ],
+      [
+        "Aggregate comparisons",
+        "research/2026-10-13/results/primary_contrasts.csv"
+      ],
+      [
+        "Data contract",
+        "DATA.md"
+      ]
+    ]
+  },
+  {
+    "slug": "taq-event-lab",
+    "name": "Self-Supervised Trade-Event Representations: Pretraining vs. Transfer",
+    "mark": "TAQ",
+    "area": "microstructure",
+    "tags": [
+      "Market microstructure",
+      "Transformers"
+    ],
+    "intro": "Next-event pretraining, history-window design, and the boundaries of cross-stock transfer.",
+    "question": "Do next-event modeling gains transfer to short-horizon relative-volatility classification on unseen stocks?",
+    "work": "Pretrained a ~2M-parameter joint-event Transformer on 7.9M TAQ training events; froze models and thresholds for event/clock-window comparisons across six stocks and ten additional dates, with date-block bootstrap and three-comparison Holm adjustment.",
+    "data": "32,162 evaluation anchors on ten additional historical trading dates. Seen stocks: AAPL, AMZN, MSFT; unseen group: NVDA, JPM, XOM. Date-level inference accounts for the dependence of anchors within dates.",
+    "finding": "Original next-event NLL improved over Markov by 0.114 / 0.177 nats per event on future-date / unseen-stock splits. On the downstream unseen-stock group, clock windows improved pretrained NLL (paired change −0.028; 95% CI [−0.041, −0.015]). The statistics benchmark was severely miscalibrated on JPM/XOM: 91–94% confidence versus 23–27% accuracy, below 33.3% uniform-random chance.",
+    "limit": "Cross-stock transfer remained unestablished: the pretrained model still trailed random encoders and uniform forecasts in the unseen-stock group. Results cover ten dates and condition on fixed models. Pointwise intervals are not Holm-adjusted intervals, and trade likelihood is not trading-profit evidence.",
+    "cover": "taq-event-lab",
+    "links": [
+      [
+        "October 2026 transfer study",
+        "research/2026-10-13/README.md"
+      ],
+      [
+        "Paired comparisons",
+        "research/2026-10-13/results/contrasts.csv"
+      ],
+      [
+        "Earlier encoding studies",
+        "DENSE_STABILITY_RESULTS.md"
+      ]
+    ],
+    "repo": "https://github.com/lz3256/taq-event-lab"
   },
   {
     "slug": "eth-modularity-volatility",
